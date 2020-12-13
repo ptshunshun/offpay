@@ -1,0 +1,29 @@
+.col-sm-4 {
+  margin: 10px 0 10px 0;
+}
+.form-control-sm{
+  width: 100%;
+}
+.col-sm-12 {
+  margin: 10px 0 10px 0;
+}
+.custom-select {
+  outline: none;
+}
+.nav-link {
+  color:#212529;
+}
+.jumbotron{
+  display: table;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  width: 100%;
+}
+.chartArea{
+  height: 80vh;
+}
+.p{
+  display: table-cell;
+  vertical-align: middle;
+  margin: 0 auto;
+}
