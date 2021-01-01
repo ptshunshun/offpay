@@ -16,7 +16,8 @@ Database.prototype._getClient = function () {
       host: 'localhost',
       user: 'root',
       password: 'Shun2887!',
-      database: 'calc'
+      database: 'calc',
+      multipleStatements: true
     });
   }
   return this.client;

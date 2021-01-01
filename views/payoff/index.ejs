@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>精算</title>
+  <meta charset="utf-8">
+　<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%- include("../_share/stylesheets.ejs") %>
+</head>
+<body>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="/">ホーム</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/regist/">入力</a>
+    </li>
+  </ul>
+  
+
+  
+<div class="jumbotron text-center">
+  <p>精算</p> 
+</div>
+
+<div class="container">
+  <div class="row">
+    <form class="col-sm-12">
+      <div class="col">
+          <input class="border border-top-0 border-right-0 border-left-0 form-control-sm" type="text" placeholder="日付を入力" id="month" name="month" >
+      </div>
+      <div class="col-sm-12 mt-5">
+        <input type="submit" class="btn shadow btn-secondary btn-block" data-method="POST" data-action="/payoff/posts/execute" value="精算">
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include("../_share/javascripts.ejs") %>
+<script src="/javascripts/regist/regist.js"></script>
+</body>
+</html>
+ 
