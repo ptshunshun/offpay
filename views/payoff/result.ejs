@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>精算</title>
+  <meta charset="utf-8">
+　<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%- include("../_share/stylesheets.ejs") %>
+</head>
+<body>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="/">ホーム</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/regist/">入力</a>
+    </li>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/payoff/">精算</a>
+    </li>
+  </ul>
+  
+
+  
+<div class="jumbotron text-center">
+  <p>精算結果</p> 
+</div>
+
+<div class="container">
+  <div class="card m-auto" style="width: 22rem;">
+    <svg class="bd-placeholder-img card-img-top" width="30%" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="10%" y="50%"></text></svg>
+    <div class="card-body">
+      <h5 class="card-title">合計：¥<%= allCost %></h5>
+    </div>
+  </div>
+  <div class="card m-auto" style="width: 22rem;">
+    <div class="card-body row">
+        <div class="col-6">
+          <p class="card-text">食費：<%= costs.length == 0 ? 0 : (costs.filter(i => [1,2].includes(i.type_id)).map(i => i.sumCost).reduce((a,b) => a + b, 0)) %></p>
+            <% for (var i = 0; i < costs.length/2-1; i++) {%>
+            <p class="card-text"><%= costs[i].type_name %>：¥<%= costs[i].sumCost %></p>
+            <% } %>
+        </div>
+        <div class="col-6">
+            <% for (var i = Math.floor(costs.length/2); i < costs.length; i++) {%>
+            <p class="card-text"><%= costs[i].type_name %>：¥<%= costs[i].sumCost %></p>
+            <% } %>
+        </div>
+    </div>
+  </div>
+  
+  <div class="card m-auto" style="width: 22rem;">
+    <svg class="bd-placeholder-img card-img-top" width="30%" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect fill="#868e96" width="100%" height="100%"/><text fill="#dee2e6" dy=".3em" x="10%" y="50%"></text></svg>
+    <div class="card-body row">
+      <% for (var i in OffpayResult_parUser) {%>
+      <div class="col-6">
+        <p class="col-xs"><%= OffpayResult_parUser[i].user %></p>
+        <p class="card-text">合計：¥<%= OffpayResult_parUser[i].cost %></p>
+        <p class="card-text">差額：<%= OffpayResult_parUser[i].diff %></p>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include("../_share/javascripts.ejs") %>
+<script src="/javascripts/regist/regist.js"></script>
+</body>
+</html>
+ 

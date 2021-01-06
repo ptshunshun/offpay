@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><%= title %></title>
+  <meta charset="utf-8">
+　<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%- include("../_share/stylesheets.ejs") %>
+</head>
+<body>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="/">ホーム</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/regist">入力</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/history">家計簿</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/payoff">精算</a>
+    </li>
+  </ul>
+  
+
+  
+  <div class="jumbotron text-center">
+    <p>家計簿履歴</p>
+  </div>
+  
+  <div class="container">
+    
+    <div class="row">
+      <div class="card col-sm-4 chartArea">
+        <canvas id="myChart" height="300"></canvas>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+          <script>
+            var costList = <%- JSON.stringify(costList); %>;
+            var typeList = <%- JSON.stringify(typeList); %>;
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+              type: 'doughnut',
+              data: {
+                datasets: [{
+                  backgroundColor: [
+                    "#BAF0B5",
+                    "#47B995",
+                    "#00CED1",
+                    "#008B8B",
+                    "#B0E0E6",
+                    "#6F99B1",
+                    "#6F8F99"
+                  ],
+                  data: costList
+                }],
+                labels: typeList,
+              },
+              options: {
+                animation: {
+                  animateScale : true
+                },
+                legend: {
+                  position: 'bottom',
+                  labels: {
+                    boxWidth: 20,
+                  },
+                },
+                layout: {
+                  padding: {
+                    left: 0,
+                    right: 0,
+                    top: 20,
+                    bottom: 10
+                  }
+                }
+              }
+            });
+          </script> 
+      </div>
+      <div class="card m-auto" style="width: 22rem;">
+        <div class="card-body row">
+          <% const parMonthList = listAll.filter(v => v.month == moment().format('YYYYMM')) %>
+          <% for (var i in parMonthList) {%>
+          <div class="col-3 m-auto">
+            <p><%= parMonthList[i].type_name%></p>
+          </div>
+          <div class="col-3 m-auto">
+            <p><%= parMonthList[i].userName%></p>
+          </div>
+          <div class="col-3 m-auto">
+            <p><%= parMonthList[i].cost%></p>
+          </div>
+          <form class="col-3" action="/history/edit/<%=parMonthList[i].id%>" method="POST">
+            <input type="submit" class="btn btn-light pt-0" value="…">
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include("../_share/javascripts.ejs") %>
+
+</body>
+</html>
+ 
