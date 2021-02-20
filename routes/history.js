@@ -3,7 +3,7 @@ var router = express.Router();
 const database = require('../middlewares/database');
 const db = database.createClient();
 const moment = require('moment');
-
+console.log('aaa');
 var updateEditData = function (body) {
   return {
     user: body.user,
