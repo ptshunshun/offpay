@@ -1,0 +1,51 @@
+{
+    "config_env": "development",
+    "databaseAuth": {
+        "host": "localhost",
+        "user": "root",
+        "password": "Shun2887!",
+        "database": "offpay",
+        "multipleStatements": true
+    },
+    "security": {
+        "SESSION_SECRET": "YOUR-SESSION-SECRET-STRING"
+    },
+    "search": {
+        "MAX_ITEMS_PER_PAGE": 2
+    },
+    "log_level": "trace",
+    "log4js": {
+        "appenders": {
+            "console": {
+                "type": "console"
+            },
+            "error": {
+                "type": "file",
+                "filename": "./offpay-logs/error.log",
+                "pattern": "yyyy-MM-dd",
+                "maxLogSize": 5242880,
+                "backups": 10
+            },
+            "wrapErr": {
+                "type": "logLevelFilter",
+                "appender": "error",
+                "level": "warn"
+            }
+        },
+        "categories": {
+            "default": {
+                "appenders": [
+                    "console",
+                    "wrapErr"
+                ],
+                "level": "ALL"
+            },
+            "express": {
+                "appenders": [
+                    "console"
+                ],
+                "level": "INFO"
+            }
+        }
+    }
+}

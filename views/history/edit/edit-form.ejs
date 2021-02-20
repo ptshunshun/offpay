@@ -2,59 +2,57 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title><%= title %></title>
   <meta charset="utf-8">
-　<meta name="viewport" content="width=device-width, initial-scale=1">
+  　
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <%- include("../../_share/fontawesome.ejs") %>
+  <%- include("../../_share/favicon.ejs") %>
   <%- include("../../_share/stylesheets.ejs") %>
 </head>
+
 <body>
-  <ul class="nav nav-tabs">
-    <li>
-      <a class="nav-link" href="/">ホーム</a>
-    </li>
-  </ul>
-  
 
-  
-<div class="jumbotron text-center">
-  <p>編集</p> 
-</div>
+  <header class="text-center">
+    <p>編集</p>
+  </header>
 
-<div class="container">
-  <div class="row"> 
-    <form class="col-sm-12">
-      <%
+  <main class="container">
+
+    <div class="row">
+      <form class="form">
+        <%
         var errors = locals.errors || {};
         var original = locals.original || {};
-      %> 
-      <div class="col-sm-12">
-        <div class="col-sm-12">
-            <input class="border border-top-0 border-right-0 border-left-0 form-control-sm" type="text" id="user" name="user" value="<%= original.user %>">
-        </div>
-        <div class="col-sm-12">
-          <input class="border border-top-0 border-right-0 border-left-0 form-control-sm" type="text" id="month" name="month" value="<%= original.month %>">
-        </div>
-        <div class="col-sm-12">
-            <input class="border border-top-0 border-right-0 border-left-0 form-control-sm" type="text" id="type" name="type" value="<%= original.type %>">
-        </div>
-        <div class="col-sm-12">
-            <input class="border border-top-0 border-right-0 border-left-0 form-control-sm" type="text" id="cost" name="cost" value="<%= original.cost %>">
-        </div>
-        <div class="col-xs-6　text-center mt-5">
-          <input type="submit" class="btn shadow btn-secondary btn-block" data-method="POST" data-action="/history/edit/confirm/<%=original.id%>" value="確認">
-        </div>
-        <div class="col-xs-6　text-center mt-5">
-          <input type="submit" class="btn shadow btn-secondary btn-block" data-method="POST" data-action="/regist/delete/confirm" value="削除">
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
+      %>
+        <input class="mb-3" type="text" id="user"
+          name="user" value="<%= original.user %>">
+        <input class="mb-3" type="text" id="month"
+          name="month" value="<%= original.month %>">
+        <input class="mb-3" type="text" id="type"
+          name="type" value="<%= original.type %>">
+        <input class="mb-3" type="text" id="cost"
+          name="cost" value="<%= original.cost %>">
 
-<%- include("../../_share/javascripts.ejs") %>
-<script src="/javascripts/regist/regist.js"></script>
+        <input type="submit" class="btn shadow btn-secondary btn-block" data-method="POST"
+          data-action="/history/edit/execute/<%= original.id %>" value="確定">
+        <input type="submit" class="btn shadow btn-secondary btn-block" data-method="POST"
+          data-action="/history/delete/confirm/<%= original.id %>" value="削除">
+        <input type="submit" class="btn shadow btn-outline-secondary btn-block" data-method="GET" data-action="/history"
+          value="戻る">
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <%- include("../../_share/navbar.ejs") %>
+  </footer>
+
+  <%- include("../../_share/javascripts.ejs") %>
+  <script src="/javascripts/regist/regist.js"></script>
 </body>
+
 </html>
- 

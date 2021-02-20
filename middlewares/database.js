@@ -1,40 +1,12 @@
-
-var mysql = require('mysql');
-
-// ModelBase: Modelのベースクラス
-var Database = function () {};
-
-// Databaseクラスのインスタンスを作成する
-function createClient() {
-  return new Database();
-};
+const mysql = require('mysql');
+const config = require('config');
+const util = require('util');
 
 // MySQLクライアントオブジェクトを作成する
-Database.prototype._getClient = function () {
-  if (this.client === undefined) {
-    this.client = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: 'Shun2887!',
-      database: 'calc',
-      multipleStatements: true
-    });
-  }
-  return this.client;
-};
+const pool = mysql.createPool(config.databaseAuth);
 
 // クエリを実行する
-Database.prototype.query = function (query, params, callback) {
-  var client = this._getClient();
-  return client.query(query, params, callback);
-}
+pool.query = util.promisify(pool.query); // ここでプロミス型に
 
-// クエリを終了する
-Database.prototype.end = function (callback) {
-  if (this.client) {
-    this.client.end(callback);
-    delete this.client;
-  }
-}
+module.exports = pool;
 
-exports.createClient = createClient;
