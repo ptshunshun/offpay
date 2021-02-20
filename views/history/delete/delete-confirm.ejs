@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title><%= title %></title>
+  <meta charset="utf-8">
+  　
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%- include("../../_share/fontawesome.ejs") %>
+  <%- include("../../_share/favicon.ejs") %>
+  <%- include("../../_share/stylesheets.ejs") %>
+</head>
+
+<body>
+
+  <header class="text-center">
+    <p>削除</p>
+  </header>
+
+  <main class="container">
+
+    <div class="row">
+      <form class="form">
+        <%
+        var errors = locals.errors || {};
+        var original = locals.original || {};
+      %>
+        <div class="col-sm-12">
+            <input class="mb-3" type="text" id="user"
+              name="user" value="<%= original.user %>">
+            <input class="mb-3" type="text" id="month"
+              name="month" value="<%= original.month %>">
+            <input class="mb-3" type="text" id="type"
+              name="type" value="<%= original.type %>">
+            <input class="mb-3" type="text" id="cost"
+              name="cost" value="<%= original.cost %>">
+            <div class="col-xs-6">
+              <input type="submit" class="btn shadow btn-secondary btn-block" data-method="POST"
+                data-action="/history/delete/execute/<%= id %>" value="確定">
+            </div>
+            <div class="col-xs-6 mt-3">
+              <input type="submit" class="btn shadow btn-outline-secondary btn-block" data-method="POST"
+                data-action="/regist/input" value="戻る">
+            </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <%- include("../../_share/navbar.ejs") %>
+  </footer>
+
+  <%- include("../../_share/javascripts.ejs") %>
+  <script src="/javascripts/regist/regist.js"></script>
+</body>
+
+</html>

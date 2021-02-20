@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title><%= title %></title>
+  <meta charset="utf-8">
+  　
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="manifest.json">
+
+  <%- include("../_share/fontawesome.ejs") %>
+  <%- include("../_share/favicon.ejs") %>
+  <%- include("../_share/stylesheets.ejs") %>
+</head>
+
+<body>
+
+  <header class="text-center">
+    <p>プロフィール</p>
+  </header>
+
+  <main class="container">
+
+    <div class="form column">
+      <div class="card pl-3">
+        <div class="card-body row">
+          <div class="card-icon">
+            <i class="fas fa-user icon-color fa-fw fa-2x"></i>
+          </div>
+          <p class="card-text"><%= original.user %></p>
+        </div>
+      </div>
+      <div class="form column">
+        <div class="card pl-3">
+          <div class="card-body row">
+            <div class="card-icon">
+              <i class="fas fa-envelope icon-color fa-fw fa-2x"></i>
+            </div>
+            <p class="card-text"><%= original.email %></p>
+          </div>
+        </div>
+        <div class="form column">
+          <div class="card pl-3">
+            <div class="card-body row">
+              <div class="card-icon">
+                <i class="fas fa-key icon-color fa-fw fa-2x"></i>
+              </div>
+              <input type="password" class="card-text" style="width: 40%;" value="<%= original.password %>" readonly>
+              <div class="card-icon ml-4">
+                <span><i class="toggle-password icon-color fas fa-eye"></i></span>
+              </div>
+            </div>
+          </div>
+          <form class="mt-3">
+            <input type="submit" class="btn shadow btn-secondary btn-block" data-method="POST"
+              data-action="/auth/logout" value="ログアウト">
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <%- include("../_share/navbar.ejs") %>
+  </footer>
+
+  <%- include("../_share/javascripts.ejs") %>
+  <script src="/javascripts/regist/regist.js"></script>
+  <script src="/javascripts/toggle/toggle-password.js"></script>
+</body>
+
+</html>
